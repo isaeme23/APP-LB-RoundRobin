@@ -1,7 +1,12 @@
 package com.eci.lb.controller;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,11 +25,14 @@ public class LoadBalancerController {
         servers.add("http://localhost:34003/hello");
     }
 
-    @GetMapping("/balance")
-    public String balanceRequest() {
+    @PutMapping("/balance")
+    public String balanceRequest(@RequestBody String cadena) {
         String server = getNextServer();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.getForEntity(server, String.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "text/plain");
+        HttpEntity<String> requestEntity = new HttpEntity<>(cadena, headers);
+        ResponseEntity<String> response = restTemplate.exchange(server, HttpMethod.PUT, requestEntity, String.class);
         return response.getBody();
     }
 

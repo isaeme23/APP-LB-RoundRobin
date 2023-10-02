@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Service</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>Form Word</h1>
+<form action="/balance">
+    <label for="name">Word:</label><br>
+    <input type="text" id="name" name="name" value="Put Your word here"><br><br>
+    <input type="button" value="Look 4 Words" onclick="loadGetMsg()">
+</form>
+<div id="getrespmsg"></div>
+
+<script>
+    function loadGetMsg() {
+        let nameVar = document.getElementById("name").value;
+        const xhttp = new XMLHttpRequest();
+        var data = {};
+        data.word = nameVar;
+        var json = JSON.stringify(data);
+        xhttp.onload = function() {
+            document.getElementById("getrespmsg").innerHTML =
+            this.responseText;
+        }
+        xhttp.open("PUT", "/balance");
+        xhttp.send(json);
+    }
+</script>
+</body>
+</html>
