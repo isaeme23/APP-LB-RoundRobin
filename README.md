@@ -15,8 +15,10 @@ Para poder instalar y usar este proyecto, se necesitará:
 * Maven.
 * Java.
 * Intellij o alguna IDE.
+* Docker (Para pruebas de uso local).
+* Cuenta AWS (Para hacer uso de sus máquinas virtuales).
 
-En la terminal de tu preferencia y en el directorio en donde trabajarás ejecuta la siguiente linea:
+En la terminal de tu preferencia y en el directorio en donde trabajarás ejecuta la siguiente línea:
 
     git clone https://github.com/isaeme23/APP-LB-RoundRobin.git
 
@@ -53,8 +55,46 @@ Asi podremos ver la siguiente pantalla:
 
 ![](img/img1.png)
 
-Si ingresamos cualquier palabra en espacio para insertar texto y hacemos click en el boton veremos el siguiente
+Si ingresamos cualquier palabra en espacio para insertar texto y hacemos click en el botón veremos el siguiente
 comportamiento:
 
 ![img2.png](img/img2.png)
 
+### APP Balancer y Log Service en remoto e Instancia de MongoDB en Docker
+
+**Antes de iniciar, debes asegurarte de que tienes Docker instalado en tu maquina local.**
+
+Una vez instalado, podrás abrirlo en la IDE de su preferencia. Para compilar el código, en la terminal
+del proyecto puedes escribir el siguiente comando:
+
+    mvn clean package
+
+Para probar con la instancia de MongoDB es importante cambiar las configuraciones necesarias indicadas en
+la documentación del proyecto de **LogService** para permitir la conexión.
+
+Luego de esto, en nuestra terminal ejecutaremos el siguiente comando para instalar la instancia de mongodb
+y asi mismo iniciarla.
+
+    docker run -d -p 27017:27017 --name mongodb-instance mongo
+
+Si todo sale en orden, en la aplicación de Docker Desktop podremos ver la instancia creada:
+
+![img3.png](img/img3.png)
+
+Luego, podremos probar nuestro proyecto ejecutando primero LogService con las instrucciones respectivas y
+después podremos ejecutar este proyecto con la siguiente línea en nuestra terminal:
+
+    mvn spring-boot:run
+
+Al ejecutar el proyecto, podremos ver como funciona el proyecto colocando la siguiente línea en el navegador
+nuestra preferencia.
+
+    localhost:8080/index.html
+
+Si insertamos distintas palabras y apretamos en el boton de enviar, podremos ver el funcionamiento del proyecto asi:
+
+![img4.png](img/img4.png)
+
+### En Maquina virtual EC2 de AWS
+
+Para esto, subiremos ambos proyectos a DockerHuB, estos los podremos encontrar en:

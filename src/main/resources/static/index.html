@@ -20,7 +20,7 @@
         const xhttp = new XMLHttpRequest();
         var data = {};
         data.word = nameVar;
-        var json = JSON.stringify(data);
+        var json = JSON.stringify(nameVar);
         xhttp.onload = function() {
             document.getElementById("getrespmsg").innerHTML =
             this.responseText;
