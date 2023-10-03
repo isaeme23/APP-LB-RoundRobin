@@ -18,11 +18,11 @@ Para poder instalar y usar este proyecto, se necesitará:
 
 En la terminal de tu preferencia y en el directorio en donde trabajarás ejecuta la siguiente linea:
 
-    git clone https://github.com/isaeme23/LogService.git
+    git clone https://github.com/isaeme23/APP-LB-RoundRobin.git
 
 Por medio de GitHub CLI se podrá instalar este proyecto con la siguiente línea:
 
-    gh repo clone isaeme23/LogService
+    gh repo clone isaeme23/APP-LB-RoundRobin
 
 ## Uso del proyecto
 ### De forma Remota
