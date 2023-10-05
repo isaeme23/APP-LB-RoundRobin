@@ -1,7 +1,6 @@
 <h1 align="center">
 <p align="center">Round Robin Load Balancer</p>
 </h1>
-> **Version 1.0**
 
 ## Introducción
 Este proyecto pretende implementar un balanceador de cargas que implementa el algoritmo de
@@ -98,3 +97,17 @@ Si insertamos distintas palabras y apretamos en el boton de enviar, podremos ver
 ### En Maquina virtual EC2 de AWS
 
 Para esto, subiremos ambos proyectos a DockerHuB, estos los podremos encontrar en:
+
+    https://hub.docker.com/repository/docker/isaeme23/logservice
+    https://hub.docker.com/repository/docker/isaeme23/applbroundrobin
+
+Al correr junto con docker-compose ambos en una instancia de EC2 de AWS al haber instalado docker en esta
+máquina, podremos ver el comportamiento en el siguiente video.
+
+https://youtu.be/4GK5C12VU20
+
+## Autores
+Isabella Manrique
+
+## Agradecimientos
+Profe Luis Daniel Benavides Navarro
